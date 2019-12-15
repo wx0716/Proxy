@@ -5,12 +5,12 @@ export PATH
 #=================================================
 #	System Required: CentOS 6/7,Debian 8/9,Ubuntu 16+
 #	Description: BBR+BBR魔改版+BBRplus+Lotserver
-#	Version: 1.3.1
+#	Version: 1.3.2
 #	Blog: https://www.wx0716.org/
 #=================================================
 
-sh_ver="1.3.1"
-github="raw.githubusercontent.com/cx9208/Linux-NetSpeed/master"
+sh_ver="1.3.2"
+github="raw.githubusercontent.com/chiakge/Linux-NetSpeed/master"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
@@ -208,7 +208,12 @@ startlotserver(){
 		apt-get update
 		apt-get install ethtool
 	fi
-	bash <(wget --no-check-certificate -qO- https://github.com/MoeClub/lotServer/raw/master/Install.sh) install
+	bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/chiakge/lotServer/master/Install.sh) install
+	sed -i '/advinacc/d' /appex/etc/config
+	sed -i '/maxmode/d' /appex/etc/config
+	echo -e "advinacc=\"1\"
+maxmode=\"1\"">>/appex/etc/config
+	/appex/bin/lotServer.sh restart
 	start_menu
 }
 
@@ -329,6 +334,7 @@ Update_Shell(){
 start_menu(){
 clear
 echo && echo -e " TCP加速 一键安装管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
+  -- 就是爱生活 | 94ish.me --
   
  ${Green_font_prefix}0.${Font_color_suffix} 升级脚本
 ————————————内核管理————————————
