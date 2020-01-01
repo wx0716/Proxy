@@ -122,7 +122,7 @@ Service(){
 		chkconfig --add mtproxy-go
 		chkconfig mtproxy-go on
 	else
-		if ! wget --no-check-certificate "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/service/mtproxy_go_debian" -O /etc/init.d/mtproxy-go; then
+		if ! wget --no-check-certificate "https://raw.githubusercontent.com/wx0716/Proxy/master/mtproxy_go_debian.sh" -O /etc/init.d/mtproxy-go; then
 			echo -e "${Error} MTProxy服务 管理脚本下载失败 !"
 			rm -rf "${file}"
 			exit 1
