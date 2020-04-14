@@ -325,11 +325,11 @@ function bbr_boost_sh(){
 
 start_menu(){
     clear
-    green " ===================================="
-    green " Trojan 一键安装自动脚本      "
-    green " 系统：centos7+/debian9+/ubuntu16.04+"
-    green " 网站：https://wx0716.com              "
-    green " ===================================="
+    yellow " ===================================="
+    yellow " Trojan 一键安装自动脚本      "
+    yellow " 系统：centos7+/debian9+/ubuntu16.04+"
+    yellow " 网站：https://wx0716.com              "
+    yellow " ===================================="
     echo
     red " ===================================="
     yellow " 1. 一键安装 Trojan"
