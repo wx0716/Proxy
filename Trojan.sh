@@ -1,17 +1,11 @@
 #!/bin/bash
 
 #fonts color
-yellow(){
-    echo -e "\033[33m\033[01m$1\033[0m"
-}
-green(){
-    echo -e "\033[32m\033[01m$1\033[0m"
-}
-red(){
-    echo -e "\033[31m\033[01m$1\033[0m"
+blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"  # 蓝色字体
 }
 
-#copy from 秋水逸冰 ss scripts
+
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
     systemPackage="yum"
@@ -45,9 +39,9 @@ fi
 function install_trojan(){
 CHECK=$(grep SELINUX= /etc/selinux/config | grep -v "#")
 if [ "$CHECK" == "SELINUX=enforcing" ]; then
-    red "======================================================================="
-    red "检测到SELinux为开启状态，为防止申请证书失败，请先重启VPS后，再执行本脚本"
-    red "======================================================================="
+    blue "======================================================================="
+    blue "检测到SELinux为开启状态，为防止申请证书失败，请先重启VPS后，再执行本脚本"
+    blue "======================================================================="
     read -p "是否现在重启 ?请输入 [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 	if [[ $yn == [Yy] ]]; then
@@ -59,9 +53,9 @@ if [ "$CHECK" == "SELINUX=enforcing" ]; then
     exit
 fi
 if [ "$CHECK" == "SELINUX=permissive" ]; then
-    red "======================================================================="
-    red "检测到SELinux为宽容状态，为防止申请证书失败，请先重启VPS后，再执行本脚本"
-    red "======================================================================="
+    blue "======================================================================="
+    blue "检测到SELinux为宽容状态，为防止申请证书失败，请先重启VPS后，再执行本脚本"
+    blue "======================================================================="
     read -p "是否现在重启 ?请输入 [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 	if [[ $yn == [Yy] ]]; then
@@ -73,16 +67,16 @@ if [ "$CHECK" == "SELINUX=permissive" ]; then
     exit
 fi
 if [ "$release" == "centos" ]; then
-    if  [ -n "$(grep ' 6\.' /etc/redhat-release)" ] ;then
-    red "==============="
-    red "当前系统不受支持"
-    red "==============="
+    if  [ -n "$(grep ' 6\.' /etc/bluehat-release)" ] ;then
+    blue "==============="
+    blue "当前系统不受支持"
+    blue "==============="
     exit
     fi
-    if  [ -n "$(grep ' 5\.' /etc/redhat-release)" ] ;then
-    red "==============="
-    red "当前系统不受支持"
-    red "==============="
+    if  [ -n "$(grep ' 5\.' /etc/bluehat-release)" ] ;then
+    blue "==============="
+    blue "当前系统不受支持"
+    blue "==============="
     exit
     fi
     systemctl stop firewalld
@@ -90,15 +84,15 @@ if [ "$release" == "centos" ]; then
     rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 elif [ "$release" == "ubuntu" ]; then
     if  [ -n "$(grep ' 14\.' /etc/os-release)" ] ;then
-    red "==============="
-    red "当前系统不受支持"
-    red "==============="
+    blue "==============="
+    blue "当前系统不受支持"
+    blue "==============="
     exit
     fi
     if  [ -n "$(grep ' 12\.' /etc/os-release)" ] ;then
-    red "==============="
-    red "当前系统不受支持"
-    red "==============="
+    blue "==============="
+    blue "当前系统不受支持"
+    blue "==============="
     exit
     fi
     systemctl stop ufw
@@ -107,16 +101,16 @@ elif [ "$release" == "ubuntu" ]; then
 fi
 $systemPackage -y install  nginx wget unzip zip curl tar >/dev/null 2>&1
 systemctl enable nginx.service
-green "======================="
-yellow "请输入绑定到本VPS的域名"
-green "======================="
+blue "======================="
+blue "请输入绑定到本VPS的域名"
+blue "======================="
 read your_domain
 real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
 local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
-	green "=========================================="
-	green "       域名解析正常，开始安装trojan"
-	green "=========================================="
+	blue "=========================================="
+	blue "       域名解析正常，开始安装trojan"
+	blue "=========================================="
 	sleep 1s
 cat > /etc/nginx/nginx.conf <<-EOF
 user  root;
@@ -273,35 +267,35 @@ EOF
 	chmod +x ${systempwd}trojan.service
 	systemctl start trojan.service
 	systemctl enable trojan.service
-	green "======================================================================"
-	green "Trojan已安装完成，请使用以下链接下载trojan客户端，此客户端已配置好所有参数"
-	green "1、复制下面的链接，在浏览器打开，下载客户端"
-	yellow "http://${your_domain}/$trojan_path/trojan-cli.zip"
-	red "请记录下面规则网址"
-	yellow "http://${your_domain}/trojan.txt"
-	green "2、将下载的压缩包解压，打开文件夹，打开start.bat即打开并运行Trojan客户端"
-	green "3、打开stop.bat即关闭Trojan客户端"
-	green "4、Trojan客户端需要搭配浏览器插件使用，例如switchyomega等"
-	green "======================================================================"
+	blue "======================================================================"
+	blue "Trojan已安装完成，请使用以下链接下载trojan客户端，此客户端已配置好所有参数"
+	blue "1、复制下面的链接，在浏览器打开，下载客户端"
+	blue "http://${your_domain}/$trojan_path/trojan-cli.zip"
+	blue "请记录下面规则网址"
+	blue "http://${your_domain}/trojan.txt"
+	blue "2、将下载的压缩包解压，打开文件夹，打开start.bat即打开并运行Trojan客户端"
+	blue "3、打开stop.bat即关闭Trojan客户端"
+	blue "4、Trojan客户端需要搭配浏览器插件使用，例如switchyomega等"
+	blue "======================================================================"
 	else
-        red "================================"
-	red "https证书没有申请成果，本次安装失败"
-	red "================================"
+        blue "================================"
+	blue "https证书没有申请成果，本次安装失败"
+	blue "================================"
 	fi
 	
 else
-	red "================================"
-	red "域名解析地址与本VPS IP地址不一致"
-	red "本次安装失败，请确保域名解析正常"
-	red "================================"
+	blue "================================"
+	blue "域名解析地址与本VPS IP地址不一致"
+	blue "本次安装失败，请确保域名解析正常"
+	blue "================================"
 fi
 }
 
 function remove_trojan(){
-    red "================================"
-    red "即将卸载trojan"
-    red "同时卸载安装的nginx"
-    red "================================"
+    blue "================================"
+    blue "即将卸载trojan"
+    blue "同时卸载安装的nginx"
+    blue "================================"
     systemctl stop trojan
     systemctl disable trojan
     rm -f ${systempwd}trojan.service
@@ -312,9 +306,9 @@ function remove_trojan(){
     fi
     rm -rf /usr/src/trojan*
     rm -rf /usr/share/nginx/html/*
-    green "=============="
-    green "trojan删除完毕"
-    green "=============="
+    blue "=============="
+    blue "trojan删除完毕"
+    blue "=============="
 }
 
 function bbr_boost_sh(){
@@ -323,21 +317,21 @@ function bbr_boost_sh(){
 
 start_menu(){
     clear
-    yellow " ===================================="
-    yellow " Trojan 一键安装自动脚本      "
-    yellow " 系统：centos7+/debian9+/ubuntu16.04+"
-    yellow " 网站：https://wx0716.com              "
-    yellow " ===================================="
+    blue " ===================================="
+    blue " Trojan 一键安装自动脚本      "
+    blue " 系统：centos7+/debian9+/ubuntu16.04+"
+    blue " 网站：https://wx0716.com              "
+    blue " ===================================="
     echo
-    red " ===================================="
-    yellow " 1. 一键安装 Trojan"
-    red " ===================================="
-    yellow " 2. 安装 4 IN 1 BBRPLUS加速脚本"
-    red " ===================================="
-    yellow " 3. 一键卸载 Trojan"
-    red " ===================================="
-    yellow " 0. 退出脚本"
-    red " ===================================="
+    blue " ===================================="
+    blue " 1. 一键安装 Trojan"
+    blue " ===================================="
+    blue " 2. 安装 4 IN 1 BBRPLUS加速脚本"
+    blue " ===================================="
+    blue " 3. 一键卸载 Trojan"
+    blue " ===================================="
+    blue " 0. 退出脚本"
+    blue " ===================================="
     echo
     read -p "请输入数字:" num
     case "$num" in
@@ -355,7 +349,7 @@ start_menu(){
     ;;
     *)
     clear
-    red "请输入正确数字"
+    blue "请输入正确数字"
     sleep 1s
     start_menu
     ;;
