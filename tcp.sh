@@ -2,12 +2,16 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
-#=================================================
-#	System Required: CentOS 6/7,Debian 8/9,Ubuntu 16+
-#	Description: BBR+BBR魔改版+BBRplus+Lotserver
-#	Version: 1.3.2
-#	Blog: https://www.wx0716.org/
-#=================================================
+blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"  # 蓝色字体
+}
+
+blue "================================================="
+blue "System Required: CentOS 6/7,Debian 8/9,Ubuntu 16+"
+blue "Description: BBR+BBR魔改版+BBRplus+Lotserver"
+blue "Version: 1.3.2"
+blue "Blog: https://wx0716.com"
+blue "================================================="
 
 sh_ver="1.3.2"
 github="raw.githubusercontent.com/chiakge/Linux-NetSpeed/master"
