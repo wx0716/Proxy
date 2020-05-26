@@ -22,6 +22,8 @@
 
 - <a href="#7">7.sshPort.sh</a>
 
+- <a href="#8">8.Trojan.sh</a>
+
 ------
 
 <a name="1">1.Aria2.sh</a>
@@ -92,4 +94,14 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/ma
 
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/sshPort.sh && chmod +x sshPort.sh && bash sshPort.sh
+```
+
+<a name="8">8.Trojan.sh</a>
+
+脚本说明：此脚本为一键安装Trojan代理脚本
+
+**使用方法：**
+
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/Trojan.sh && chmod +x Trojan.sh && bash Trojan.sh
 ```
