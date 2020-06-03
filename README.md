@@ -24,6 +24,10 @@
 
 - <a href="#8">8.Trojan.sh</a>
 
+- <a href="#9">9.SystemTest.sh</a>
+
+- <a href="#10">10.SpeedTest.sh</a>
+
 ------
 
 #### <a name="1">1. Aria2.sh</a>
@@ -104,4 +108,24 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/ma
 
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/Trojan.sh && chmod +x Trojan.sh && bash Trojan.sh
+```
+
+#### <a name="9">9. SystemTest.sh</a>
+
+脚本说明：此脚本为测试服务器的性能与网络速度和回车路由详情
+
+**使用方法：**
+
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/SystemTest.sh && chmod +x SystemTest.sh && bash SystemTest.sh
+```
+
+#### <a name="10">10. SpeedTest.sh</a>
+
+脚本说明：此脚本为测试服务器的网络速度情况，测试节点为四网测速，测试结果仅供参考，以你实际本地网络情况为准。
+
+**使用方法：**
+
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/SpeedTest.sh && chmod +x SpeedTest.sh && bash SpeedTest.sh
 ```
