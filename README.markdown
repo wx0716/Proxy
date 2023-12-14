@@ -129,3 +129,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/ma
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/wx0716/Proxy/master/SpeedTest.sh && chmod +x SpeedTest.sh && bash SpeedTest.sh
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=wx0716/Proxy&type=Date)](https://star-history.com/#wx0716/Proxy&Date)
